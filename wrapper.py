@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
 
-class ApiDB(object):
+class WrapperDB(object):
     def __init__(self):
         self.client = MongoClient('mongodb://localhost:27017/')
 
@@ -24,22 +24,16 @@ class ApiDB(object):
     def remove_data(self, query=None):
         self.collection.remove(query)
 
-    def check_data(self, query, projection, field, name):
-        pass
-        #for_checking = self.collection.find_one(query, projection)
-        #if for_checking[field] == name:
-         #   return 'true'
-        #return 'false'
-
-if __name__ == '__main__':
-    apidb = ApiDB()
-    apidb.choose_database('testdb')
-    apidb.choose_collection('unicorns')
-    #apidb.insert_data({'name': 'Kate', 'role':'student', 'age':29})
-    #apidb.insert_data({'name': 'Ed', 'role':'programmer', 'age':29})
-    #cursor = apidb.get_data({'name':'Ed'}, {'_id': 0, 'name': 1, 'age': 1} )
-    #for row in cursor:
-    #    print row
-    #apidb.remove_data({'name':'Kate'})
-    #result = apidb.check_data({'age': 29}, {'name': 1}, 'name', 'Ed')
-    #print result
+    def check_data(self, query, field, name):
+        check_field = self.collection.find_one(query)
+        if check_field:
+            return check_field[field] == name #false  - [field] != name
+        else:
+            return False  #check_field is empty
+            
+    def find_and_modify(self, query, update, **kwargs):
+        return self.collection.find_and_modify(query, update, **kwargs)
+        
+    def get_one_document(self, query):
+        return self.collection.find_one(query)
+        
