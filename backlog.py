@@ -11,6 +11,7 @@ from pprint import pprint
 from counter import Counter
 
 class BackLog(WrapperDB):
+    _stories = []
     def __init__(self):
         super(BackLog, self).__init__()
         self.choose_database("bugtracker")
@@ -24,7 +25,6 @@ class BackLog(WrapperDB):
                           "stories": stories})
                           
     def create_story(self, name, description, status, comments, tasks, sprint):
-        stories = []
         counter = Counter()        
         story ={"story_id": counter.get_next_sequence("storyid"), 
                 "name": name,
@@ -34,11 +34,11 @@ class BackLog(WrapperDB):
                 "tasks": tasks,
                 "sprint": sprint  
                 }
-        stories.append(story)
-        return stories
+        self._stories.append(story)
+        return self._stories
     
-    def add_story(self, backlog_id, name):
-        self.update_data({"backlog_id": backlog_id}, {"$set": {"stories": name}})
+    def add_story(self, backlog_id):
+        self.update_data({"backlog_id": backlog_id}, {"$set": {"stories": self._stories}})
         
         
     

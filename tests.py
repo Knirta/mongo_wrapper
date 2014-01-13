@@ -42,8 +42,12 @@ def users_test():
     
 def backlog_test():
     backlog = BackLog()
-    #backlog.add_backlog("sprint2", [], [])  #will write when ready 
-    pprint(backlog.get_backlog_by_id(2))
+    #backlog.add_backlog("sprint3", [], [])  #will write when ready 
+    backlog.create_story("name222", "description1", "status1", [], [], "sprint1")
+    backlog.create_story("name111", "description22", "status1", [], [], "sprint1")
+       
+    backlog.add_story(1)
+    
     
 def counter_test():
     counter = Counter()
