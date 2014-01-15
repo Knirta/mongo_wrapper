@@ -5,7 +5,7 @@ Created on Thu Jan  9 21:35:00 2014
 @author: localadmin
 """
 
-from wrapper import WrapperDB
+from wrapperdb import WrapperDB
 from user import Users
 from pprint import pprint
 from counter import Counter
@@ -17,12 +17,12 @@ class BackLog(WrapperDB):
         self.choose_database("bugtracker")
         self.choose_collection("backlog")
               
-    def add_backlog(self, name, members, stories):
+    def add_backlog(self, name):
                
         counter = Counter()
-        self.insert_data({"backlog_id": counter.get_next_sequence("backlogid"),
-                          "name": name, "members": members,
-                          "stories": stories})
+        self.insert_data({"_id": counter.get_next_sequence("backlogid"),
+                          "name": name, "members": [],
+                          "stories": []})
                           
     def create_story(self, name, description, status, comments, tasks, sprint):
         counter = Counter()        
