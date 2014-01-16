@@ -5,7 +5,7 @@ Created on Sun Jan 12 16:49:30 2014
 @author: localadmin
 """
 
-from wrapper import WrapperDB
+from wrapperdb import WrapperDB
 from pprint import pprint
 
 

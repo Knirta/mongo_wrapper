@@ -24,16 +24,19 @@ class WrapperDB(object):
     def remove_data(self, query=None):
         self.collection.remove(query)
 
-    def check_data(self, query, field, name):
-        check_field = self.collection.find_one(query)
-        if check_field:
-            return check_field[field] == name #false  - [field] != name
-        else:
-            return False  #check_field is empty
+    #def check_data(self, query, field, name):
+        #check_field = self.collection.find_one(query)
+        #if check_field:
+            #return check_field[field] == name #false  - [field] != name
+        #else:
+           # return False  #check_field is empty
             
     def find_and_modify(self, query, update, **kwargs):
         return self.collection.find_and_modify(query, update, **kwargs)
         
     def get_one_document(self, query):
         return self.collection.find_one(query)
+        
+    def save_data(self, data):
+        self.collection.save(data)
         

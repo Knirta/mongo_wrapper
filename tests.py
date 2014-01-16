@@ -6,7 +6,7 @@ Created on Thu Jan  9 13:38:33 2014
 """
 
 from pprint import pprint
-from wrapper import WrapperDB
+from wrapperdb import WrapperDB
 from user import Users
 from backlog import BackLog
 from counter import Counter
@@ -52,7 +52,7 @@ def backlog_test():
     
 def counter_test():
     counter = Counter()
-    #counter.create_counter()
+    counter.create_counter()
     pprint(counter.get_next_sequence("userid"))
     
 if __name__ == '__main__':
