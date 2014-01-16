@@ -24,15 +24,15 @@ class BackLog(WrapperDB):
                           "name": name, "members": members,
                           "stories": stories})
                           
-    def create_story(self, name, description, status, comments, tasks, sprint):
+    def create_story(self, dictionary ):
         counter = Counter()        
         story ={"story_id": counter.get_next_sequence("storyid"), 
-                "name": name,
-                "description": description,
-                "status": status,
-                "comments": comments,
-                "tasks": tasks,
-                "sprint": sprint  
+                "name": dictionary.get("name"),
+                "description": dictionary.get("description"),
+                "status": dictionary.get("status"),
+                "comments": dictionary.get("comments",""),
+                "tasks": dictionary.get("tasks", ""),
+                "sprint": dictionary.get("sprint") 
                 }
         self._stories.append(story)
         return self._stories

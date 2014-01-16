@@ -6,15 +6,8 @@ Created on Sun Jan 12 15:28:10 2014
 """
 
 class BackLog(WrapperDB):
-    comments = []
-    tasks = []
-    stories = []
-        
-    def __init__(self):
-        super(BackLog, self).__init__()
-        self.choose_database("bugtracker")
-        self.choose_collection("backlog")
-        
+
+
     def create_comment(self, comment_id, author_id, text):
         comment = {"comment_id": comment_id,
                    "author_id": author_id,
@@ -36,19 +29,8 @@ class BackLog(WrapperDB):
                 }
         self.tasks.append(task)
                 
-    def create_story(self, story_id, name, description, status, comments, sprint):
-        story ={"story_id": story_id, 
-                "name": name,
-                "description": description,
-                "status": status,
-                "comments": comments,
-                "tasks": self.tasks,
-                "sprint": sprint  
-                }
-        pprint(story)
-        return story
-        
-
+    
+       
  """   def add_json_backlog(self, backlog_id, name, members, stories):
         members = []
         for :
